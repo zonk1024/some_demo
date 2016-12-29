@@ -43,9 +43,7 @@ def is_logged_in():
     cookie = flask.request.headers.get('Cookie')
     if not cookie:
         return False
-    if r.get('cookie:{}'.format(cookie)):
-        return True
-    return False
+    return r.exists('cookie:{}'.format(cookie))
 
 
 @app.route('/')
@@ -66,7 +64,6 @@ def index():
         '\n'.join(buttons),
         THE_LOWER_PAGE,
     ))
-    response.headers['Set-Cookie'] = 'some cookie value'
     return response
 
 
