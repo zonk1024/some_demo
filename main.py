@@ -75,8 +75,7 @@ def login():
         if username == 'bob' and password == 'bobpass':
             random_value = new_random_string()
             r.setex('cookie:{}'.format(random_value), 1, 30)
-            response = flask.Response('Logged in!')
-            # TODO: Verify this is correct -- appears to work though
+            response = flask.Response('<html><body>Logged in! <a href="/">HOME</a></body></html>')
             response.headers['Set-Cookie'] = random_value
             return response
         else:
